@@ -1,0 +1,71 @@
+<div class="containerOuter">
+  <div class="containerInner">
+    <mat-toolbar color="primary" class="headerContainer">
+      <app-public-header
+        (openCloseSidenavMobile)="mobileSidenavOpened = !mobileSidenavOpened"
+      ></app-public-header>
+    </mat-toolbar>
+
+    <div class="sidenavContainerOuter">
+      <mat-sidenav-container [@fadeAnimation]="getRouterOutletState(fade)">
+        <mat-sidenav
+          class="sidenavMobile"
+          [opened]="sidenav.opened"
+          position="end"
+          (openedChange)="sidenavStatus($event)"
+        >
+          <app-public-sidenav></app-public-sidenav>
+        </mat-sidenav>
+
+        <mat-sidenav
+          class="mobileSidenav"
+          (close)="mobileSidenavOpened = false"
+          [opened]="mobileSidenavOpened"
+          #mobilesidenav
+        >
+          <mat-nav-list menu-items *ngIf="(role$ | async) === 'CUSTOMER'">
+            <a mat-list-item (click)="navigateTo('restaurant')">
+              <mat-icon>home</mat-icon>
+              HOME
+            </a>
+            <a mat-list-item (click)="navigateTo('menu')">
+              <mat-icon>restaurant_menu</mat-icon>
+              MENU
+            </a>
+            <a mat-list-item (click)="navigateTo('bookTable')">
+              <mat-icon>bookmark</mat-icon>
+              BOOK TABLE
+            </a>
+          </mat-nav-list>
+          <mat-nav-list menu-items *ngIf="(role$ | async) === 'MANAGER'">
+            <a mat-list-item (click)="navigateTo('prediction')">
+              <mat-icon>show_chart</mat-icon>
+              PREDICTION
+            </a>
+            <a mat-list-item (click)="navigateTo('clustering')">
+              <mat-icon>drag_indicator</mat-icon>
+              CLUSTERING
+            </a>
+          </mat-nav-list>
+          <mat-nav-list menu-items *ngIf="(role$ | async) === 'WAITER'">
+            <a mat-list-item (click)="navigateTo('orders')">
+              <mat-icon>home</mat-icon>
+              ORDERS
+            </a>
+            <a mat-list-item (click)="navigateTo('reservations')">
+              <mat-icon>restaurant_menu</mat-icon>
+              RESERVATIONS
+            </a>
+          </mat-nav-list>
+        </mat-sidenav>
+
+        <router-outlet #fade="outlet"></router-outlet>
+      </mat-sidenav-container>
+    </div>
+
+    <mat-toolbar class="appFooter forDesktop">
+      <span>MY THAI STAR {{ year }} - {{ version$ | async }}</span>
+      <span>Devonfw</span>
+    </mat-toolbar>
+  </div>
+</div>

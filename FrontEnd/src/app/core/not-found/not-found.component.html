@@ -1,0 +1,22 @@
+<div class="pageContainer">
+  <div class="cardContainer">
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title>
+          <mat-icon color="accent">pan_tool</mat-icon>
+          Ups, something went wrong
+        </mat-card-title>
+        <mat-card-subtitle>Page not found</mat-card-subtitle>
+      </mat-card-title-group>
+      <mat-card-content>
+        <p>The page that you are trying to access <strong>does not exist</strong> or <strong>cannot be found</strong>. Please,
+          go to the home page and navigate to other sections.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-raised-button color="accent" [routerLink]="['/restaurant']">
+          Home
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

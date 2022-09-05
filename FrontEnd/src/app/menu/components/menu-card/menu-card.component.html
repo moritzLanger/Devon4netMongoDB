@@ -1,0 +1,30 @@
+<mat-card class="details-card">
+  <div
+    class="menu-image"
+    [style.background-image]="
+      'url(' + menuInfo.image.content + ')'
+    "
+  >
+    <button
+      mat-fab
+      *ngIf="auth"
+      (click)="changeFavouriteState()"
+      class="favourite-button"
+    >
+      <mat-icon
+        [class.fab-on]="!menuInfo.isfav"
+        [class.fab-off]="menuInfo.isfav"
+      >
+        star
+      </mat-icon>
+    </button>
+    <span *ngIf="!auth"></span>
+    <app-own-menu-card-comments class="reviews"></app-own-menu-card-comments>
+  </div>
+
+  <app-own-menu-card-details
+    [menuInfo]="menuInfo"
+    (selectExtra)="selectedOption($event)"
+    (clickOrder)="addOrderMenu()"
+  ></app-own-menu-card-details>
+</mat-card>

@@ -1,0 +1,23 @@
+{
+  "extends": "../tsconfig.json",
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "../dist/out-tsc",
+    "target": "es5",
+    "types": [
+      "hammerjs"
+    ],
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "allowUnreachableCode": false,
+    "pretty": true
+  },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}

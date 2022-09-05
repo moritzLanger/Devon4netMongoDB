@@ -1,0 +1,44 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/app-builds
+/dist
+/deploy
+/out-tsc
+/release
+/tmp
+main.js
+src/**/*.js
+*.js.map
+
+# dependencies
+/node_modules
+/node
+
+# IDEs and editors
+.idea/
+
+# IDE - VSCode
+.vscode/
+
+# misc
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+/.vagrant
+/documentation
+
+# e2e
+/cypress/videos/*
+/cypress/report/*
+/cypress/screenshots/*
+/cypress/mochawesome-report/*
+
+#System Files
+.DS_Store
+Thumbs.db

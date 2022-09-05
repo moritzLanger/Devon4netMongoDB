@@ -1,0 +1,74 @@
+.header-container {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  max-width: 100%;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  .sub-title {
+    font-size: small;
+    font-style: italic;
+    height: 15px;
+    line-height: 15px;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+[flex] {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.logged-in {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+nav {
+  border-bottom: none;
+  margin-right: 20px;
+}
+
+nav a {
+  min-width: 100px !important;
+  color: white;
+}
+
+.navBottomBorder {
+  border-bottom: 3px solid white;
+}
+
+mat-sidenav {
+  width: 400px;
+}
+
+@media (max-width: 599px) {
+  .forDesktop {
+    display: none;
+  }
+  .sidenavMobile {
+    width: 100%;
+  }
+}
+
+@media (min-width: 600px) {
+  .forMobile {
+    display: none;
+  }
+}
+
+.mat-tab-nav-bar.mat-primary .mat-tab-label:focus,
+.mat-tab-nav-bar.mat-primary .mat-tab-link:focus {
+  background-color: #3e2723;
+}

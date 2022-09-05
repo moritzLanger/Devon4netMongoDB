@@ -1,0 +1,18 @@
+<app-own-menu-filters
+  (applyForm)="onFilterChange($event)"
+></app-own-menu-filters>
+
+<div *ngIf="dishes$ | async as dishes; else loading" class="card-container">
+  <app-public-menu-card
+    *ngFor="let dish of dishes"
+    [menuInfo]="dish"
+    [auth]="(logged$ | async) === true"
+    (orderAdded)="onOrderAdded($event)"
+    (extraSelected)="onExtraSelected($event)"
+  ></app-public-menu-card>
+</div>
+
+<ng-template #loading>
+  <mat-progress-bar #loading color="accent" mode="indeterminate">
+  </mat-progress-bar>
+</ng-template>

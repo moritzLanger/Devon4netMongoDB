@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import '@angular/material/theming';
+@import './styles.scss';
+// Plus imports for other components in your app.
+
+// Define a custom typography config that overrides the font-family
+// or any typography level.
+$typography: mat.define-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat.define-typography-level(32px, 48px, 700),
+);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$primary: mat.define-palette(mat.$brown-palette, 900);
+$accent:  mat.define-palette(mat.$green-palette, 700, A100, A400);
+
+// // The warn palette is optional (defaults to red).
+$warn:    mat.define-palette(mat.$red-palette, 600);
+
+// // Create the theme object (a Sass map containing all of the palettes).
+$theme: mat.define-light-theme($primary, $accent, $warn);
+
+$foreground: map-get($theme, foreground);
+$background: map-get($theme, background);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($theme);
+
+@include snackbar-bgc();

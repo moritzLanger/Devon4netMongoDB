@@ -1,0 +1,51 @@
+version: "3.8"
+services:
+  sql-server:
+    build: 
+      context: ./Database
+    environment:
+        SA_PASSWORD: "C@pgemini2017"
+        ACCEPT_EULA: "Y"
+    volumes:
+      - mssql-volume:/var/opt/mssql
+    ports:
+      - 1433:1433  
+    networks:
+      backend-net:
+        aliases: [database]
+
+  dotnet-backend:
+    container_name: net
+    build: 
+      context: ./Templates/WebAPI
+      dockerfile: ./Devon4Net.Application.WebAPI/Dockerfile
+    networks:
+      backend-net:
+        aliases: [backend]
+    ports:
+      - 8081:8081
+
+  frontend:
+    container_name: angular
+    build: 
+      context: ./FrontEnd
+    networks:
+      backend-net:
+        aliases: [backend]
+
+  reverse-proxy:
+    build: ./ReverseProxy
+    restart: always
+    container_name: 'mts_reverse_proxy'
+    ports:
+      - 8080:80
+    networks:
+      backend-net:
+        aliases: [backend]
+
+networks:
+  backend-net:
+    driver: bridge
+
+volumes:
+  mssql-volume:
