@@ -67,7 +67,7 @@ public class DishConverter
                 {
                     result.Add(new CategoryDto
                     {
-                        id = item.Id,
+                        id = Convert.ToInt64(item.Id),
                         description = item.Description,
                         modificationCounter = item.ModificationCounter,
                         name = item.Name,
@@ -88,7 +88,7 @@ public class DishConverter
         {
             return new DishDto
             {
-                id = item._id,
+                id = Convert.ToInt64(item._id),
                 description = item.Description,
                 name = item.Name,
                 price = item.Price
@@ -108,7 +108,7 @@ public class DishConverter
                     modificationCounter = image.ModificationCounter,
                     mimeType = image.MimeType,
                     name = image.Name,
-                    id = image.Id,
+                    id = Convert.ToInt64(image.Id),
                     contentType = image.ContentType,
                     extension = image.Extension
                 };

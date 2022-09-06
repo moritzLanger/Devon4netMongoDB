@@ -131,11 +131,6 @@
             Association from DishDtoResult [simple] to CategoryDto [many]
             </summary>
         </member>
-        <member name="T:Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Service.DishService">
-            <summary>
-            Service implementation
-            </summary>
-        </member>
         <member name="T:Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Service.IDishService">
             <summary>
             TodoService interface

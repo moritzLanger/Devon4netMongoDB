@@ -56,7 +56,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Co
 
             var categoryIds = categories.Select(c => c.Id).ToList();
 
-            var dishQueryResult = await _DishService.GetDishesMatchingCriterias(maxPrice, minLikes, searchBy, categoryIds);
+            var dishQueryResult = await _DishService.GetDish();
 
             var result = new ResultObjectDto<DishDtoResult> {};
 

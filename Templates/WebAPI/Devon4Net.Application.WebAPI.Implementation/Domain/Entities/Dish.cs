@@ -17,7 +17,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
 
         [BsonRepresentation(BsonType.ObjectId)]
 
-        public long _id { get; set; }
+        public string _id { get; set; }
  
 
     [BsonElement("Name")]

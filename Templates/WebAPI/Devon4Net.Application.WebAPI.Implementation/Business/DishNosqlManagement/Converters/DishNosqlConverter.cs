@@ -34,7 +34,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManageme
 
             return new DishNosqlDto
             {
-                Id = item._id,
+                Id = Convert.ToInt64(item._id),
 
                 Name = item.Name,
 

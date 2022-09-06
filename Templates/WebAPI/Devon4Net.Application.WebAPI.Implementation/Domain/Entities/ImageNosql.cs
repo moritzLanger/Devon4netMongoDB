@@ -12,7 +12,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public long Id { get; set; }
+        public string Id { get; set; }
         [BsonElement("Name")]
         public string Name { get; set; }
         [BsonElement("Content")]

@@ -8,10 +8,30 @@ using Devon4Net.Application.WebAPI.Implementation.Domain.RepositoryInterfaces;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Service
 {
+        public class DishService : IDishService
+
+        {
+            private readonly IDishRepository _dishRepository;
+
+
+
+            public DishService(IDishRepository dishRepository)
+
+            {
+
+                _dishRepository = dishRepository;
+
+            }
+
+            public async Task<IList<Dish>> GetDish() => await _dishRepository.GetAll();
+
+        }
+    }
+
     /// <summary>
     /// Service implementation
     /// </summary>
-    public class DishService : IDishService
+    /*public class DishService : IDishService
 
     {
         private readonly IDishRepository _dishRepository;
@@ -63,12 +83,11 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Se
 
             return result.ToList();
         }
-
-        public Task<Dish> GetDishById(long id)
+*/
+    /*public Task<Dish> GetDishById(long id)
         {
             Devon4NetLogger.Debug($"GetDishById method from service Dishservice with value : {id}");
             
             return _dishRepository.GetDishById(id);
-        }
-    }
-}
+        }*/
+   
