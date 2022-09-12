@@ -9,85 +9,48 @@ using Devon4Net.Application.WebAPI.Implementation.Domain.RepositoryInterfaces;
 namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Service
 {
         public class DishService : IDishService
-
         {
             private readonly IDishRepository _dishRepository;
-
-
 
             public DishService(IDishRepository dishRepository)
 
             {
-
                 _dishRepository = dishRepository;
-
             }
 
             public async Task<IList<Dish>> GetDish() => await _dishRepository.GetAll();
 
-        }
+
+            public async Task<IList<Dish>> GetDishesByCategory(IList<string> categories)
+            {
+                var dish = await _dishRepository.GetDishesByCategory(categories);
+            return dish;
+            }
+
+            public async Task<IList<Dish>> GetDishesByPrice(decimal maxPrice)
+            {
+                return await _dishRepository.GetDishesByPrice(maxPrice);
+            }
+
+            public async Task<IList<Dish>> GetDishesByString(string searchBy)
+            {
+                return await _dishRepository.GetDishesByString(searchBy);
+            }
+
+            public async Task<IList<Dish>> GetDishesByLikes(int minLikes)
+            {
+                return await _dishRepository.GetDishesByLikes(minLikes);
+            }
+        
+            public async Task<IList<Dish>> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList<string> categoryIdList)
+            {
+                Devon4NetLogger.Debug("GetDish from DishService");
+                return await _dishRepository.GetDishesMatchingCriteria(maxPrice, minLikes, searchBy, categoryIdList);
+            }
     }
-
-    /// <summary>
-    /// Service implementation
-    /// </summary>
-    /*public class DishService : IDishService
-
-    {
-        private readonly IDishRepository _dishRepository;
+}
 
 
 
-        public DishService(IDishRepository dishRepository)
 
-        {
-
-            _dishRepository = dishRepository;
-
-        }
-
-        public async Task<List<Dish>> GetDishesMatchingCriterias(decimal maxPrice, int minLikes, string searchBy, IList<long> categoryIdList)
-        {
-            Devon4NetLogger.Debug("GetDish from DishService");
-
-            var includes = new List<string>
-            {
-                "DishCategory",
-                "DishCategory.IdCategoryNavigation", 
-                "DishIngredient",
-                "DishIngredient.IdIngredientNavigation",
-                "IdImageNavigation"
-            };
-
-            var result = await _dishRepository.GetAllNested(includes).ConfigureAwait(false);
-
-            if (categoryIdList.Any())
-            {
-                result = result.Where(r => r.Category.Any(a => categoryIdList.Contains(a.Id))).ToList();
-            }
-
-            if (!string.IsNullOrWhiteSpace(searchBy))
-            {
-                result = result.Where(e => e.Name.Contains(searchBy)).ToList();
-            }
-
-            if (maxPrice > 0)
-            {
-                result = result.Where(e => e.Price < maxPrice).ToList();
-            }
-
-            if (minLikes > 0)
-            {
-                   
-            }
-
-            return result.ToList();
-        }
-*/
-    /*public Task<Dish> GetDishById(long id)
-        {
-            Devon4NetLogger.Debug($"GetDishById method from service Dishservice with value : {id}");
-            
-            return _dishRepository.GetDishById(id);
-        }*/
    

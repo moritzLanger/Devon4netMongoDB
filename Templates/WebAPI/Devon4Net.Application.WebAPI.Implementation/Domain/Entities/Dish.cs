@@ -13,37 +13,24 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
 
     { 
 
-    [BsonId]
-
+        [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-
         public string _id { get; set; }
  
-
-    [BsonElement("Name")]
-
+        [BsonElement("Name")]
         public string Name { get; set; }
 
-
-
         [BsonElement("Price")]
-
+        [BsonRepresentation(BsonType.Decimal128)]
         public decimal Price { get; set; }
 
-
         [BsonElement("Description")]
-
         public string Description { get; set; }
-
-
 
         [BsonElement("Image")]
         public ImageNosql Image { get; set; }
 
-
-
         [BsonElement("Category")]
-
         public ICollection<CategoryNosql> Category { get; set; }
     }
 }

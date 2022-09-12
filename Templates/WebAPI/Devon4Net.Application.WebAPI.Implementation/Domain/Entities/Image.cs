@@ -8,27 +8,22 @@ using System.Threading.Tasks;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
 {
-    public class CategoryNosql
+    public class Image
     {
-
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-
+        public long Id { get; set; }
         [BsonElement("Name")]
         public string Name { get; set; }
-
-        [BsonElement("Description")]
-        public string Description { get; set; }
-
-        [BsonElement("ShowOrder")]
-        public int ShowOrder { get; set; }
-
+        [BsonElement("Content")]
+        public string Content { get; set; }
+        [BsonElement("MimeType")]
+        public string MimeType { get; set; }
+        [BsonElement("Extension")]
+        public string Extension { get; set; }
+        [BsonElement("ContentType")]
+        public int ContentType { get; set; }
         [BsonElement("ModificationCounter")]
         public int ModificationCounter { get; set; }
-
-        [BsonElement("CategoryId")]
-        public int CategoryId { get; set; }
     }
-
 }

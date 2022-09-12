@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Service;
 using Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Dto;
@@ -7,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Converters;
-using Devon4Net.Application.WebAPI.Implementation.Domain.Entities;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Controllers
 {
@@ -26,7 +24,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Co
         {
             _DishService = DishService;
         }
-
+        
         [HttpPost]
         [AllowAnonymous]
         [ProducesResponseType(typeof(DishDto), StatusCodes.Status200OK)]
@@ -55,11 +53,8 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Co
             ) = filterDto;
 
             var categoryIds = categories.Select(c => c.Id).ToList();
-
-            var dishQueryResult = await _DishService.GetDish();
-
+            var dishQueryResult = await _DishService.GetDishesMatchingCriteria(maxPrice, minLikes, searchBy, categoryIds);
             var result = new ResultObjectDto<DishDtoResult> {};
-
             result.content = dishQueryResult.Select(DishConverter.EntityToApi).ToList();
             result.Pagination.Total = dishQueryResult.Count();
 
