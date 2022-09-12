@@ -68,8 +68,7 @@ public class DishConverter
                         description = item.Description,
                         modificationCounter = item.ModificationCounter,
                         name = item.Name,
-                        showOrder = item.ShowOrder,
-                        categoryId = item.CategoryId
+                        showOrder = item.ShowOrder
                     });
 
                 }

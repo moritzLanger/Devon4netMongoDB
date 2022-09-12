@@ -14,7 +14,6 @@ public class CategoryDto
 
         public int modificationCounter { get; set; }
 
-        public int categoryId { get; set; }
     }
 }
 

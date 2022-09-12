@@ -27,7 +27,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Data.Repositories
 
             ConventionRegistry.Register("CamelCase", camelCaseConvention, type => true);
 
-            _dishCollection = _mongoClient.GetDatabase("mts_progress").GetCollection<Dish>("Dish");
+            _dishCollection = _mongoClient.GetDatabase("mts").GetCollection<Dish>("Dish");
 
         }
         /*
@@ -52,7 +52,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Data.Repositories
         public async Task<IList<Dish>> GetDishesByCategory(IList<string> categoryIdList)
         {
             return await _dishCollection
-                .Find(Builders<Dish>.Filter.In("Category.CategoryId", categoryIdList))
+                .Find(Builders<Dish>.Filter.In("Category._id", categoryIdList))
                 .ToListAsync();
         }
 
@@ -97,9 +97,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Data.Repositories
                 IList<Dish> temp = await GetDishesByString(searchBy);
                 var tempNames = temp.Select(tempDish => tempDish.Name);
                 result = result.Where(item => tempNames.Contains(item.Name)).ToList();
-
-                //var query = new BsonRegularExpression(new Regex(searchBy, RegexOptions.IgnoreCase));
-                //result = (IList<Dish>)result.Where(result => result.Name == query);
             }
 
             if (maxPrice > 0)
@@ -107,7 +104,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Data.Repositories
                 IList<Dish> temp = await GetDishesByPrice(maxPrice);
                 var tempPrices = temp.Select(tempDish => tempDish.Price);
                 result = result.Where(item => tempPrices.Contains(item.Price)).ToList();
-                //result = (IList<Dish>)result.Where(result => result.Price <= maxPrice);
             }
 
             if (minLikes > 0)

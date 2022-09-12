@@ -44,7 +44,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Se
         
             public async Task<IList<Dish>> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList<string> categoryIdList)
             {
-                Devon4NetLogger.Debug("GetDish from DishService");
                 return await _dishRepository.GetDishesMatchingCriteria(maxPrice, minLikes, searchBy, categoryIdList);
             }
     }

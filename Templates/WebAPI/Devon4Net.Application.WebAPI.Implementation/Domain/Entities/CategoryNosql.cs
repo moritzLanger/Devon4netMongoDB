@@ -27,8 +27,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
         [BsonElement("ModificationCounter")]
         public int ModificationCounter { get; set; }
 
-        [BsonElement("CategoryId")]
-        public int CategoryId { get; set; }
     }
 
 }
