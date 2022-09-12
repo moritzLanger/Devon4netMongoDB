@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Dto;
 using Devon4Net.Application.WebAPI.Implementation.Domain.Entities;
 
@@ -19,7 +17,6 @@ public class DishConverter
             return new DishDtoResult
             {
                 dish = DishToApi(item),
-
                 image = GetImageDtoFromImage(item.Image),
                 categories = GetCategories(item.Category),
             };
@@ -67,11 +64,12 @@ public class DishConverter
                 {
                     result.Add(new CategoryDto
                     {
-                        id = Convert.ToInt64(item.Id),
+                        id = item.Id,
                         description = item.Description,
                         modificationCounter = item.ModificationCounter,
                         name = item.Name,
-                        showOrder = item.ShowOrder
+                        showOrder = item.ShowOrder,
+                        categoryId = item.CategoryId
                     });
 
                 }
@@ -88,13 +86,12 @@ public class DishConverter
         {
             return new DishDto
             {
-                id = Convert.ToInt64(item._id),
+                id = item._id,
                 description = item.Description,
                 name = item.Name,
                 price = item.Price
             };
         }
-
         private static ImageDto GetImageDtoFromImage(ImageNosql image)
         {
             if (image == null) return new ImageDto();
@@ -104,11 +101,11 @@ public class DishConverter
             {
                 result = new ImageDto
                 {
+                    id = image.Id,
                     content = image.Content,
                     modificationCounter = image.ModificationCounter,
                     mimeType = image.MimeType,
                     name = image.Name,
-                    id = Convert.ToInt64(image.Id),
                     contentType = image.ContentType,
                     extension = image.Extension
                 };

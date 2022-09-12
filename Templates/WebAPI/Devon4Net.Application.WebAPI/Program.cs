@@ -1,6 +1,6 @@
 using Devon4Net.Application.WebAPI.Configuration;
 using Devon4Net.Application.WebAPI.Configuration.Application;
-using Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Service;
+using Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Service;
 using Devon4Net.Application.WebAPI.Implementation.Configuration;
 using Devon4Net.Domain.UnitOfWork;
 using Devon4Net.Infrastructure.CircuitBreaker;
@@ -35,7 +35,7 @@ builder.Services.SetupMediatR(builder.Configuration);
 builder.Services.SetupKafka(builder.Configuration);
 builder.Services.SetupGrpc(builder.Configuration);
 builder.Services.SetupDevonDependencyInjection(builder.Configuration);
-
+builder.Services.AddSingleton<DishService>();
 #endregion
 
 var app = builder.Build();

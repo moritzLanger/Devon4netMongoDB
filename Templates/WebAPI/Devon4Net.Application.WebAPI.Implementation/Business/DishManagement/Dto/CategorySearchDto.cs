@@ -5,7 +5,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Dt
     public class CategorySearchDto
     {
         [JsonProperty(PropertyName = "id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
     }
 }

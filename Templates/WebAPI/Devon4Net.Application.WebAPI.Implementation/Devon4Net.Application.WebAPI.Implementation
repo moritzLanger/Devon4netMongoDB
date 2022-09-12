@@ -136,19 +136,6 @@
             TodoService interface
             </summary>
         </member>
-        <member name="M:Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Controllers.DishNosqlController.#ctor(Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Service.IDishNosqlService)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="dishServiceNosql"></param>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Converters.DishNosqlConverter.ModelToDto(Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Dish)" -->
-        <!-- Badly formed XML comment ignored for member "P:Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Dto.DishNosqlDto.Id" -->
-        <!-- Badly formed XML comment ignored for member "P:Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Dto.DishNosqlDto.Name" -->
-        <!-- Badly formed XML comment ignored for member "P:Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Dto.DishNosqlDto.Description" -->
-        <!-- Badly formed XML comment ignored for member "P:Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Dto.DishNosqlDto.Price" -->
-        <!-- Badly formed XML comment ignored for member "P:Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Dto.DishNosqlDto.Image" -->
-        <!-- Badly formed XML comment ignored for member "P:Devon4Net.Application.WebAPI.Implementation.Business.DishNosqlManagement.Dto.DishNosqlDto.Category" -->
         <member name="T:Devon4Net.Application.WebAPI.Implementation.Business.MediatRManagement.Commands.CreateTodoCommand">
             <summary>
             THe command to create a TO-DO

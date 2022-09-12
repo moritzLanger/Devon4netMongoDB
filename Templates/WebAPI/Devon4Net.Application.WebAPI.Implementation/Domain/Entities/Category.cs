@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
 {
-    public class CategoryNosql
+    public class Category
     {
 
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public long Id { get; set; }
 
         [BsonElement("Name")]
         public string Name { get; set; }
@@ -26,9 +26,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
 
         [BsonElement("ModificationCounter")]
         public int ModificationCounter { get; set; }
-
-        [BsonElement("CategoryId")]
-        public int CategoryId { get; set; }
     }
 
 }

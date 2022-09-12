@@ -14,7 +14,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Dt
         public Decimal? MaxPrice { get; set; }
 
         [JsonProperty(PropertyName = "minLikes")]
-        public Decimal? MinLikes { get; set; }
+        public Int32? MinLikes { get; set; }
 
         public void Deconstruct(out CategorySearchDto[] categories, out string searchBy, out Decimal maxPrice, out Int32 minLikes)
         {

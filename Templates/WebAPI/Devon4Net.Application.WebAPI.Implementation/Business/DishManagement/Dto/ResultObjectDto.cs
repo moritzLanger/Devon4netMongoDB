@@ -5,14 +5,14 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Dt
     public class ResultObjectDto<T>
     {
         [JsonProperty(PropertyName = "pagination")]
-        public Pagination Pagination { get; set; }
+        public PaginationDto Pagination { get; set; }
 
         [JsonProperty(PropertyName = "content")]
         public List<T> content { get; set; }
 
         public ResultObjectDto()
         {
-            Pagination = new Pagination();
+            Pagination = new PaginationDto();
             content = new List<T>();
         }
     }

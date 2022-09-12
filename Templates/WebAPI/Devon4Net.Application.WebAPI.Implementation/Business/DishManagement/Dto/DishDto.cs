@@ -5,7 +5,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Dt
 public class DishDto { 
 
         
-            public long id { get; set; }
+            public string id { get; set; }
             public string name { get; set; }
             public decimal price { get; set; }
             public string description { get; set; }

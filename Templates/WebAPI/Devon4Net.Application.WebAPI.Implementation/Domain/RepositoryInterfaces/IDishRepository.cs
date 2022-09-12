@@ -9,6 +9,12 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.RepositoryInterface
         */
         Task<IList<Dish>> GetAll();
 
-        // Task<Dish> GetDishById(long id);
+        Task<IList<Dish>> GetDishesByCategory(IList<string> categoryIdList);
+
+        Task<IList<Dish>> GetDishesByPrice(decimal maxPrice);
+
+        Task<IList<Dish>> GetDishesByString(string searchBy);
+        Task<IList<Dish>> GetDishesByLikes(int minLikes);
+        Task<IList<Dish>> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList<string> categoryIdList);
     }
 }

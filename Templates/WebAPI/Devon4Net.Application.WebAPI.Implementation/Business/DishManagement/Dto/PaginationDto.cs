@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Dto
 {
-    public class Pagination
+    public class PaginationDto
     {
         [JsonProperty(PropertyName = "size")]
         public int Size { get; set; }
