@@ -79,7 +79,7 @@ Alternatively use the NuGet Package Solution Manager:
 
 Tools \> NuGet Package Manager \> Manage NuGet Packages for Solution:
 
-![](assets/NugetPackageManager.png)
+![](assets/Nuget.png)
 
 Search in the Browse Tab for MongoDB.Driver, check the Projext Box and press install.
 
