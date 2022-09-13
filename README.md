@@ -61,7 +61,7 @@ In the following sections a more extensive walkthrough of the above summary is p
 
 I am using the following MongoDB Instance, received by utilizing the MongoDBScript.js  which was mentioned in the prior section:
 
-![](RackMultipart20220913-1-4d2c6g_html_c83dbc2977318b9a.gif) ​
+![](assets/MongoDbInstance.png)
 
 Note: In this example we populated our dish collection with fields which might be unnecessary. For example the _Dish.Image.ModificationCounter_ or the _Category.ModificationCounter_ fields could've been omited when populating our database. We did so, because of an easy and fast straigthforward population process from the old sql database to our new mongo database. Data modeling is a very extensive topic and thinking about the correct document structures is a crucial part of a migration from SQL to Nosql. Read more about this if needed.
 
@@ -79,11 +79,11 @@ Alternatively use the NuGet Package Solution Manager:
 
 Tools \> NuGet Package Manager \> Manage NuGet Packages for Solution:
 
-![](RackMultipart20220913-1-4d2c6g_html_c83dbc2977318b9a.gif) ​ ![](RackMultipart20220913-1-4d2c6g_html_c83dbc2977318b9a.gif) ![](RackMultipart20220913-1-4d2c6g_html_c83dbc2977318b9a.gif) ​​
+![](assets/NugetPackageManager.png)
 
 Search in the Browse Tab for MongoDB.Driver, check the Projext Box and press install.
 
-![](RackMultipart20220913-1-4d2c6g_html_c83dbc2977318b9a.gif) ​ ![](RackMultipart20220913-1-4d2c6g_html_c83dbc2977318b9a.gif) ![](RackMultipart20220913-1-4d2c6g_html_c83dbc2977318b9a.gif) ​​
+![](assets/MongoDBDriver.png)
 
 **Create a Repository Interface and the corresponding Implementation**
 
@@ -367,78 +367,78 @@ First add the API to our DishRepository Interface:
 
 Task\<List\<Dish\>\> GetAll();
 
-_**Task\<IList\<Dish\>\> GetDishesByCategory(IList\<string\> categoryIdList);**_
+Task\<IList\<Dish\>\> GetDishesByCategory(IList\<string\> categoryIdList);
 
-_**Task\<IList\<Dish\>\> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList\<string\> categoryIdList);**_
+Task\<IList\<Dish\>\> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList\<string\> categoryIdList);
 
     }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
 Next implement them inside the DishRepository Class:
 
-       _**public async Task\<IList\<Dish\>\> GetDishesByCategory(IList\<string\> categoryIdList)
+       public async Task\<IList\<Dish\>\> GetDishesByCategory(IList\<string\> categoryIdList)
          {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
              return await \_dishCollection
                  .Find(Builders\<Dish\>.Filter.In("Category.\_id", categoryIdList))
                  .ToListAsync();
-         }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
+         }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
 ​​​​​​​
 
-      _**public async Task\<IList\<Dish\>\> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList\<string\> categoryIdList)
+      public async Task\<IList\<Dish\>\> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList\<string\> categoryIdList)
          {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
              IList\<Dish\> result = await GetAll();**_
 
-            _**if(categoryIdList.Any())
+            if(categoryIdList.Any())
              {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
                  IList\<Dish\> temp = await GetDishesByCategory(categoryIdList);
                  var tempIds = temp.Select(tempDish =\> tempDish.\_id);
-                 result = result.Where(item =\> tempIds.Contains(item.\_id)).ToList();**_
+                 result = result.Where(item =\> tempIds.Contains(item.\_id)).ToList();
 
-            _ **}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​** _
+            }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
-            _**if (!string.IsNullOrWhiteSpace(searchBy))
+            if (!string.IsNullOrWhiteSpace(searchBy))
              {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
                  IList\<Dish\> temp = await GetDishesByString(searchBy);
                  var tempNames = temp.Select(tempDish =\> tempDish.Name);
                  result = result.Where(item =\> tempNames.Contains(item.Name)).ToList();
-             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
+             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
-            _**if (maxPrice \> 0)
+            if (maxPrice \> 0)
              {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
                  IList\<Dish\> temp = await GetDishesByPrice(maxPrice);
                  var tempPrices = temp.Select(tempDish =\> tempDish.Price);
                  result = result.Where(item =\> tempPrices.Contains(item.Price)).ToList();
-             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
+             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
-            _**return result.ToList();
-         }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
+            return result.ToList();
+         }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
 Define the corresponding Interface IDishService:
 
-  _**public interface IDishService
-     {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
+     public interface IDishService
+     {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
-        _**Task\<IList\<Dish\>\> GetDishesByCategory(IList\<string\> categoryIdList);**_
-_**        Task\<IList\<Dish\>\> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList\<string\> categoryIdList);
-     }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
+           Task\<IList\<Dish\>\> GetDishesByCategory(IList\<string\> categoryIdList);**_
+           Task\<IList\<Dish\>\> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList\<string\> categoryIdList);
+     }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
 Implement the depending DishService Class:
 
-           _**public async Task\<IList\<Dish\>\> GetDishesByCategory(IList\<string\> categories)
+           public async Task\<IList\<Dish\>\> GetDishesByCategory(IList\<string\> categories)
              {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
                  var dish = await \_dishRepository.GetDishesByCategory(categories);
              return dish;
-             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
+             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
-​​​​​​​            _**public async Task\<IList\<Dish\>\> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList\<string\> categoryIdList)
+​​​​​​​            public async Task\<IList\<Dish\>\> GetDishesMatchingCriteria(decimal maxPrice, int minLikes, string searchBy, IList\<string\> categoryIdList)
              {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
                  return await \_dishRepository.GetDishesMatchingCriteria(maxPrice, minLikes, searchBy, categoryIdList);
-             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
+             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
 Add the corresponding WebAPI inside our DishController Class:
 
-        _**[HttpPost]
+         [HttpPost]
          [AllowAnonymous]
          [ProducesResponseType(typeof(DishDto), StatusCodes.Status200OK)]
          [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -450,22 +450,22 @@ Add the corresponding WebAPI inside our DishController Class:
              if (filterDto == null)
              {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
                  filterDto = new FilterDtoSearchObjectDto {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​ MaxPrice = 0, SearchBy = string.Empty, MinLikes = 0, Categories = new CategorySearchDto[]{​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​ }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​;
-             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
-_**            var (
+             }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+             var (
                  categories,
                  searchBy,
                  maxPrice,
                  minLikes
-             ) = filterDto;**_
+             ) = filterDto;
 
-            _**var categoryIds = categories.Select(c =\> c.Id).ToList();
+             var categoryIds = categories.Select(c =\> c.Id).ToList();
              var dishQueryResult = await \_DishService.GetDishesMatchingCriteria(maxPrice, minLikes, searchBy, categoryIds);
              var result = new ResultObjectDto\<DishDtoResult\> {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​;
              result.content = dishQueryResult.Select(DishConverter.EntityToApi).ToList();
              result.Pagination.Total = dishQueryResult.Count();**_
 
-            _**return new ObjectResult(JsonConvert.SerializeObject(result));
-         }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​**_
+             return new ObjectResult(JsonConvert.SerializeObject(result));
+         }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
 Note: _**GetDishesByPrice(maxPrice)**_ and _**GetDishesByString(searchBy)**_, are not shown in this example and are left as an exercise to learn more about the Mongodb C# API. The implementation of _**GetDishesByCategory(IList\<string\> categoryIdList)**_ can be used as a reference since it has a similar code.
 
