@@ -52,7 +52,7 @@ public class DishConverter
                     return result;
                 }*/
 
-        private static List<CategoryDto> GetCategories(ICollection<CategoryNosql> itemDishCategory)
+        private static List<CategoryDto> GetCategories(ICollection<Category> itemDishCategory)
         {
             var result = new List<CategoryDto>();
 
@@ -85,13 +85,13 @@ public class DishConverter
         {
             return new DishDto
             {
-                id = item._id,
+                id = item.Id,
                 description = item.Description,
                 name = item.Name,
                 price = item.Price
             };
         }
-        private static ImageDto GetImageDtoFromImage(ImageNosql image)
+        private static ImageDto GetImageDtoFromImage(Image image)
         {
             if (image == null) return new ImageDto();
             var result = new ImageDto();
