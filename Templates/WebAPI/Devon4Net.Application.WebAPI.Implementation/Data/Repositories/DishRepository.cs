@@ -26,16 +26,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Data.Repositories
             _dishCollection = _mongoClient.GetDatabase("mts").GetCollection<Dish>("Dish");
 
         }
-        /*
-        public async Task<Dish> GetDishById(string id)
-        {
-            Devon4NetLogger.Debug($"GetDishByID method from repository Dishservice with value : {id}");
-            var filter_id = Builders<Dish>.Filter.Eq("id", ObjectId.Parse(id));
-            var entity = _dishCollection.Find(filter_id)
-                .FirstOrDefault();
-            return entity;
-        }
-        */
+
 
         public async Task<IList<Dish>> GetAll()
         {

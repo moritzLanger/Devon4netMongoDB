@@ -22,35 +22,7 @@ public class DishConverter
             };
 
         }
-        /*
-                private static List<ExtraDto> GetDishExtras(ICollection<DishIngredient> itemDishIngredient)
-                {
-                    var result = new List<ExtraDto>();
-
-                    if (itemDishIngredient == null) return result;
-
-                    try
-                    {
-                        foreach (var item in itemDishIngredient)
-                        {
-                            result.Add(new ExtraDto
-                            {
-                                id = item.IdIngredient,
-                                description = item.IdIngredientNavigation.Description,
-                                price = item.IdIngredientNavigation.Price,
-                                modificationCounter = item.ModificationCounter,
-                                revision = 1,
-                                name = item.IdIngredientNavigation.Name
-                            });
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        var msg = $"{ex.Message} : {ex.InnerException}";
-                    }
-
-                    return result;
-                }*/
+ 
 
         private static List<CategoryDto> GetCategories(ICollection<Category> itemDishCategory)
         {
@@ -81,6 +53,7 @@ public class DishConverter
             return result;
         }
 
+
         private static DishDto DishToApi(Dish item)
         {
             return new DishDto
@@ -91,6 +64,8 @@ public class DishConverter
                 price = item.Price
             };
         }
+
+
         private static ImageDto GetImageDtoFromImage(Image image)
         {
             if (image == null) return new ImageDto();
@@ -111,10 +86,8 @@ public class DishConverter
             }
             catch (Exception ex)
             {
-                var msg = $"{ex.Message} : {ex.InnerException}";
+                _ = $"{ex.Message} : {ex.InnerException}";
             }
-
-
             return result;
         }
     }

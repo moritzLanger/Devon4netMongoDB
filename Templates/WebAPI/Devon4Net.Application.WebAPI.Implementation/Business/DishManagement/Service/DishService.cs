@@ -1,8 +1,4 @@
-using System.Linq.Expressions;
-using Devon4Net.Infrastructure.Logger.Logging;
-using Devon4Net.Domain.UnitOfWork.Service;
-using Devon4Net.Domain.UnitOfWork.UnitOfWork;
-using Devon4Net.Application.WebAPI.Implementation.Domain.Database;
+
 using Devon4Net.Application.WebAPI.Implementation.Domain.Entities;
 using Devon4Net.Application.WebAPI.Implementation.Domain.RepositoryInterfaces;
 
@@ -10,13 +6,17 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Se
 {
     public class DishService : IDishService
     {
+
+
         private readonly IDishRepository _dishRepository;
+
 
         public DishService(IDishRepository dishRepository)
 
         {
             _dishRepository = dishRepository;
         }
+
 
         public async Task<IList<Dish>> GetDish() => await _dishRepository.GetAll();
 

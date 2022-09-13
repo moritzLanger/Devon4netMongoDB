@@ -26,8 +26,6 @@ public class DishDtoResult
         [JsonProperty(PropertyName = "categories")]
         public ICollection<CategoryDto> categories { get; set; }
 
-
-
         public	DishDtoResult()
         {
             extras = new HashSet<ExtraDto>();

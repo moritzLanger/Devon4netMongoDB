@@ -673,6 +673,111 @@
             </summary>
             <param name="modelBuilder"></param>
         </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Category.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Category.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Category.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Category.ShowOrder">
+            <summary>
+            ShowOrder
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Category.ModificationCounter">
+            <summary>
+            ModificationCounter
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Dish.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Dish.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Dish.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Dish.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Dish.Image">
+            <summary>
+            Image
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Dish.Category">
+            <summary>
+            Category
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Image.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Image.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Image.Content">
+            <summary>
+            Content
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Image.MimeType">
+            <summary>
+            MimeType
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Image.Extension">
+            <summary>
+            Extension
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Image.ContentType">
+            <summary>
+            ContentType
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Image.ModificationCounter">
+            <summary>
+            ModificationCounter
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Ingredient.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Ingredient.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Ingredient.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
         <member name="T:Devon4Net.Application.WebAPI.Implementation.Domain.Entities.Todos">
             <summary>
             Entity class for Todos

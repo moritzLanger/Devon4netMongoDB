@@ -19,11 +19,8 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Dt
         public void Deconstruct(out CategorySearchDto[] categories, out string searchBy, out Decimal maxPrice, out Int32 minLikes)
         {
             categories = Categories ?? new CategorySearchDto[]{};
-
             searchBy = SearchBy ?? String.Empty;
-
             maxPrice = MaxPrice.GetValueOrDefault(0);
-
             minLikes = Convert.ToInt32(MinLikes.GetValueOrDefault(0));
         }
     }

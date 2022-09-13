@@ -10,8 +10,19 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.Entities
         {
         }
 
+        /// <summary>
+        /// Name
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Description
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Price
+        /// </summary>
         public decimal? Price { get; set; }
     }
 }

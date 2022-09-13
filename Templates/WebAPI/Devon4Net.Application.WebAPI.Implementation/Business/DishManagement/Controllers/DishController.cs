@@ -40,9 +40,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Co
                 filterDto = new FilterDtoSearchObjectDto { MaxPrice = 0, SearchBy = string.Empty, MinLikes = 0, Categories = new CategorySearchDto[]{} };
             }
 
-            // I guess this was one of the more recent changes in the frontend.
-            // Most queries with numbers are now actually parsed in json as numbers
-
             // converts and destructures the given filter-dto
             // also converts or defaults values if necessary
             

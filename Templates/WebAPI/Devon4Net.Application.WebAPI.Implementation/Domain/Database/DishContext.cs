@@ -1,6 +1,5 @@
 using Devon4Net.Application.WebAPI.Implementation.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace Devon4Net.Application.WebAPI.Implementation.Domain.Database
 {
@@ -31,7 +30,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Domain.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<Dish>().OwnsOne(a => a.Image);
             modelBuilder.Entity<Dish>().OwnsMany(a => a.Category);
         }
