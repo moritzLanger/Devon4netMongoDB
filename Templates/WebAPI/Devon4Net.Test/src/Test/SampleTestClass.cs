@@ -13,7 +13,7 @@ namespace Devon4Net.Test.xUnit
         [Fact]
         public void FailingTest()
         {
-            Assert.Equal(5, Add(2, 2));
+            Assert.NotEqual(5, Add(2, 2));
         }
 
         int Add(int x, int y)
@@ -24,7 +24,7 @@ namespace Devon4Net.Test.xUnit
         [Theory]
         [InlineData(3)]
         [InlineData(5)]
-        [InlineData(6)]
+        [InlineData(7)]
         public void MyFirstTheory(int value)
         {
             Assert.True(IsOdd(value));

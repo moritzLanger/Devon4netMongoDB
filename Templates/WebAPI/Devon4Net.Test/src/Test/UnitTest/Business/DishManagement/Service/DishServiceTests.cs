@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using Moq;
-using Devon4Net.Test.xUnit.Test.Integration;
 using Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Service;
 using Devon4Net.Application.WebAPI.Implementation.Domain.Entities;
 using System.Threading.Tasks;
 using Devon4Net.Application.WebAPI.Implementation.Domain.RepositoryInterfaces;
 using FluentAssertions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Devon4Net.Test.xUnit.Test.UnitTest.Management.Controllers
 {
@@ -17,19 +16,39 @@ namespace Devon4Net.Test.xUnit.Test.UnitTest.Management.Controllers
         private readonly Mock<IDishRepository> repositoryStub = new();
         private readonly Random rand = new();
         [Fact]
-        public async Task DishGetAll_WithWorkingRepo_ReturnsAllDishes()
+        public async Task GetDish_WithWorkingRepo_ReturnsAllDishes()
         {
             //Arrange
-            var expectedDishes = new[] { CreateRandomDish(), CreateRandomDish(), CreateRandomDish() };
+            var ExpectedDishes = new[] { CreateRandomDish(), CreateRandomDish(), CreateRandomDish() };
             repositoryStub.Setup(repo => repo.GetAll())
-                .ReturnsAsync(expectedDishes);
+                .ReturnsAsync(ExpectedDishes);
 
             var controller = new DishService(repositoryStub.Object);
             //Act
             var actualDishes = await controller.GetDish();
             //Assert
-            actualDishes.Should().BeEquivalentTo(expectedDishes, options => options.ComparingByMembers<Dish>());
+            actualDishes.Should().BeEquivalentTo(ExpectedDishes, options => options.ComparingByMembers<Dish>());
         }
+
+        [Fact]
+        public async Task GetDishesByCategory_WithGivenCategories_ReturnsTheCorrespondingCategoryDishes()
+        {
+            //Arrange
+            var Dishes = new[] { CreateRandomDish(), CreateRandomDish(), CreateRandomDish() };
+            var ExpectedCategories = new[] { Dishes[0].Category, Dishes[1].Category };
+            IList<Dish> ExpectedDishes = new List<Dish> { Dishes[0], Dishes[1] };
+            IList<string> Ids = new List<string>() { ExpectedCategories[0].FirstOrDefault().Id, ExpectedCategories[1].FirstOrDefault().Id };
+
+            var controller = new DishService(repositoryStub.Object);
+
+            repositoryStub.Setup(repo => repo.GetDishesByCategory(Ids))
+                .ReturnsAsync(ExpectedDishes);
+            //Act
+            var result = await controller.GetDishesByCategory(Ids);
+            //Assert
+            result.Should().BeEquivalentTo(ExpectedDishes, options => options.ComparingByMembers<Dish>());
+        }
+
 
         private Image CreateRandomImage()
         {
@@ -67,7 +86,7 @@ namespace Devon4Net.Test.xUnit.Test.UnitTest.Management.Controllers
                 Name = Guid.NewGuid().ToString(),
                 Price = (decimal)rand.NextDouble() + 1,
                 Image = CreateRandomImage(),
-                Category = new[] { CreateRandomCategory(), CreateRandomCategory(), CreateRandomCategory() }
+                Category = new[] { CreateRandomCategory(), CreateRandomCategory() , CreateRandomCategory() }
             };
         }
     }
