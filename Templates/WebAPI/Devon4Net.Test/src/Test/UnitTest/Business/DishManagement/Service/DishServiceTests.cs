@@ -16,7 +16,7 @@ namespace Devon4Net.Test.xUnit.Test.UnitTest.Management.Controllers
         private readonly Mock<IDishRepository> repositoryStub = new();
         private readonly Random rand = new();
         [Fact]
-        public async Task GetDish_WithWorkingRepo_ReturnsAllDishes()
+        public async Task GetDish_WithPopulatedRepo_ReturnsAllDishes()
         {
             //Arrange
             var ExpectedDishes = new[] { CreateRandomDish(), CreateRandomDish(), CreateRandomDish() };
@@ -29,6 +29,7 @@ namespace Devon4Net.Test.xUnit.Test.UnitTest.Management.Controllers
             //Assert
             actualDishes.Should().BeEquivalentTo(ExpectedDishes, options => options.ComparingByMembers<Dish>());
         }
+
 
         [Fact]
         public async Task GetDishesByCategory_WithGivenCategories_ReturnsTheCorrespondingCategoryDishes()
