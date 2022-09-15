@@ -12,7 +12,6 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Se
 
 
         public DishService(IDishRepository dishRepository)
-
         {
             _dishRepository = dishRepository;
         }
@@ -24,7 +23,7 @@ namespace Devon4Net.Application.WebAPI.Implementation.Business.DishManagement.Se
         public async Task<IList<Dish>> GetDishesByCategory(IList<string> categories)
         {
             var dish = await _dishRepository.GetDishesByCategory(categories);
-        return dish;
+            return dish;
         }
 
 
