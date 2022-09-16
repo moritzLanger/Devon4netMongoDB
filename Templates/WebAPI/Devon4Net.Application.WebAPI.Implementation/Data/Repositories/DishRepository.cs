@@ -77,33 +77,24 @@ namespace Devon4Net.Application.WebAPI.Implementation.Data.Repositories
             if(categoryIdList.Any())
             {
                 //Return Dishes containing the given category id's
-                IList<Dish> temp = await GetDishesByCategory(categoryIdList);
-                var tempIds = temp.Select(tempDish => tempDish.Id);
-                //Calculate Intersection of previous Result and the category filter
-                result = result.Where(dish => tempIds.Contains(dish.Id)).ToList();
+                result = result.Where(dish => dish.Category.Any(cat => categoryIdList.Contains(cat.Id))).ToList();
             }
 
             if (!string.IsNullOrWhiteSpace(searchBy))
             {
                 //Return Dishes containing the given searchBy string in their names
-                IList<Dish> temp = await GetDishesByString(searchBy);
-                var tempNames = temp.Select(tempDish => tempDish.Name);
-                //Calculate Intersection of previous Result and the name filter
-                result = result.Where(item => tempNames.Contains(item.Name)).ToList();
+                result = result.Where(dish => dish.Name.Contains(searchBy, StringComparison.CurrentCultureIgnoreCase)).ToList();
             }
 
             if (maxPrice > 0)
             {
                 //Return Dishes which cost maximum maxPrice
-                IList<Dish> temp = await GetDishesByPrice(maxPrice);
-                var tempPrices = temp.Select(tempDish => tempDish.Price);
-                //Calculate Intersection of previous Result and the price filter
-                result = result.Where(item => tempPrices.Contains(item.Price)).ToList();
+                result = result.Where(dish => dish.Price <= maxPrice).ToList();
             }
 
             if (minLikes > 0)
             {
-                //result = result.Where(result => result.MinLikes >= minLikes);
+                //result = result.Where(dish => dish.MinLikes >= minLikes).ToList();
             }
 
             return result.ToList();
